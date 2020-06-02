@@ -14,13 +14,11 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Buffs\Buffs\" />
-    <Folder Include="Buffs\Debuffs\" />
-    <Folder Include="Buffs\Pets\" />
+    <Folder Include="Buffs\Positive\" />
+    <Folder Include="Buffs\Negative\" />
+    <Folder Include="Buffs\Vanity\" />
     <Folder Include="Dusts\" />
-    <Folder Include="Globals\" />
     <Folder Include="Gores\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Items\Accessories\" />
     <Folder Include="Items\Armors\" />
     <Folder Include="Items\Banners\" />
