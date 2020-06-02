@@ -1,0 +1,3 @@
+displayName = Temperate Mod
+author = The Temperate Team
+version = 0.1
