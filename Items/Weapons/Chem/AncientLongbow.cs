@@ -37,6 +37,7 @@ namespace TemperateMod.Items.Weapons.Chem
             item.height = 30;
             item.damage = 5000;
             item.crit = 11;
+            item.knockBack = 10f;
             item.useTime = 1;
             item.useAnimation = 30;
             item.channel = true;
