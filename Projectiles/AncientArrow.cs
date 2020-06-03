@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,6 +27,8 @@ namespace TemperateMod.Projectiles
         public override void AI()
         {
             projectile.ai[0] = 0;
+            projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+            projectile.spriteDirection = projectile.direction;
             if (!Explode)
             {
                 int Explosion = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.AncientLight, newColor: Color.Cyan, Scale: 0.75f);
