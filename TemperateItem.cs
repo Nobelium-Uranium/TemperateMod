@@ -20,10 +20,10 @@ namespace TemperateMod
         {
             ModRecipe r = new ModRecipe(mod);
             r.AddIngredient(ItemID.EnchantedNightcrawler);
+            r.AddIngredient(ItemID.ShroomiteBar, 5);
             r.AddIngredient(ItemID.SoulofLight, 2);
             r.AddIngredient(ItemID.SoulofNight, 2);
             r.AddIngredient(ItemID.SoulofFlight, 2);
-            r.AddIngredient(ItemID.GlowingMushroom, 30);
             r.AddTile(TileID.Bottles);
             r.SetResult(ItemID.TruffleWorm);
             r.AddRecipe();
