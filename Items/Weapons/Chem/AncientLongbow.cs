@@ -39,13 +39,12 @@ namespace TemperateMod.Items.Weapons.Chem
             item.crit = 11;
             item.knockBack = 10f;
             item.useTime = 1;
-            item.useAnimation = 30;
+            item.useAnimation = 60;
             item.channel = true;
             item.shoot = ProjectileType<AncientArrow>();
             item.shootSpeed = 10f;
             item.useAmmo = AmmoID.Arrow;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.knockBack = 0;
             item.value = Item.sellPrice(gold: 75);
             item.rare = ItemRarityID.Cyan;
             item.autoReuse = true;
@@ -84,10 +83,10 @@ namespace TemperateMod.Items.Weapons.Chem
                     float scale = 1f - (Main.rand.NextFloat() * 0.3f);
                     perturbedSpeed = perturbedSpeed * scale;
                     int Explosion = Dust.NewDust(MuzOffset, 0, 0, DustID.AncientLight, newColor: Color.Cyan);
-                    Main.dust[Explosion].velocity = -perturbedSpeed * ChargeAmount / 60 + player.velocity;
+                    Main.dust[Explosion].velocity = -perturbedSpeed * ChargeAmount / item.useAnimation + player.velocity;
                     Main.dust[Explosion].noGravity = true;
                 }
-                if (ChargeAmount == 60)
+                if (ChargeAmount == item.useAnimation)
                 {
                     if (!FullyCharged)
                     {
