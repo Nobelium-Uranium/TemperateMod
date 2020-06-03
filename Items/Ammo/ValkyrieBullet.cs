@@ -9,7 +9,7 @@ namespace TemperateMod.Items.Ammo
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Low critical ratio, but returns ammo on crit and inflicts 3x damage");
+            Tooltip.SetDefault("Low fixed critical ratio\nReturns ammo on crit and inflicts 3x damage");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace TemperateMod.Items.Ammo
             item.value = Item.sellPrice(copper: 2);
             item.rare = ItemRarityID.Orange;
             item.shoot = ProjectileType<Projectiles.ValkyrieBullet>();
-            item.shootSpeed = 10f;
+            item.shootSpeed = 16f;
             item.ammo = AmmoID.Bullet;
         }
     }
