@@ -51,6 +51,8 @@ namespace TemperateMod.Projectiles
             }
             if (projectile.timeLeft > 3)
                 projectile.timeLeft = 3;
+            if (damage >= target.life)
+                hitDirection = 0;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
