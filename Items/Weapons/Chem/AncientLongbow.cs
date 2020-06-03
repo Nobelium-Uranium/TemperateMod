@@ -72,7 +72,7 @@ namespace TemperateMod.Items.Weapons.Chem
 
         public override void HoldItem(Player player)
         {
-            if (player.channel)
+            if (player.channel && !player.dead)
             {
                 Using = true;
                 if (ChargeAmount == 5)
@@ -111,7 +111,7 @@ namespace TemperateMod.Items.Weapons.Chem
             }
             else
             {
-                if (Using)
+                if (Using && !player.dead)
                 {
                     player.itemTime = item.useAnimation;
                     player.itemAnimation = item.useAnimation;
@@ -129,8 +129,8 @@ namespace TemperateMod.Items.Weapons.Chem
                         Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/AncientLongbow/AncientBowShot").WithVolume(0.75f), player.position);
                         Projectile.NewProjectile(RefPosition, RefVelocity, ProjectileType<AncientArrow>(), RefDamage, RefKnockback, player.whoAmI);
                     }
-                    Using = false;
                 }
+                Using = false;
                 ChargeAmount = 0;
                 FullyCharged = false;
                 ArrowLoaded = false;
