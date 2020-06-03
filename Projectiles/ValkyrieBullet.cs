@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TemperateMod;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
 
 namespace TemperateMod.Projectiles
@@ -28,7 +25,7 @@ namespace TemperateMod.Projectiles
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (Main.rand.NextFloat() > 0.15f)
+            if (Main.rand.NextFloat() > 0.05f)
                 crit = false;
             else
                 crit = true;

@@ -1,13 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.ID;
-using TemperateMod;
-using static TemperateMod.TemperateProjHelpers;
-using TemperateMod.Items.Ammo;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace TemperateMod.Projectiles
 {
@@ -17,7 +11,7 @@ namespace TemperateMod.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.aiStyle = 0;
+            projectile.aiStyle = 1;
             projectile.arrow = true;
             projectile.ranged = true;
             projectile.width = projectile.height = 10;
@@ -28,7 +22,7 @@ namespace TemperateMod.Projectiles
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (Main.rand.NextFloat() > 0.15f)
+            if (Main.rand.NextFloat() > 0.05f)
                 crit = false;
             else
                 crit = true;

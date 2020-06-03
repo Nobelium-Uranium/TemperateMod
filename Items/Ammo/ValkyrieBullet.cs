@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
-using TemperateMod;
-using TemperateMod.Projectiles;
 
 namespace TemperateMod.Items.Ammo
 {
@@ -13,7 +9,7 @@ namespace TemperateMod.Items.Ammo
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Low critical hit rate, but returns ammo on crit and inflicts 3x damage");
+            Tooltip.SetDefault("Low critical ratio, but returns ammo on crit and inflicts 3x damage");
         }
 
         public override void SetDefaults()
