@@ -113,8 +113,8 @@ namespace TemperateMod.Items.Weapons.Chem
             {
                 if (Using && !player.dead)
                 {
-                    player.itemTime = item.useAnimation;
-                    player.itemAnimation = item.useAnimation;
+                    player.itemTime = item.useAnimation / 2;
+                    player.itemAnimation = item.useAnimation / 2;
                     if (FullyCharged)
                     {
                         for (int i = 0; i < 10; i++)
