@@ -90,6 +90,7 @@ namespace TemperateMod
                 RelicLifeCounter = 0;
                 RelicManaCounter = 0;
             }
+            //god just use a switch AAAAAAAAAAAAAAAAA
         }
     }
 }

@@ -13,6 +13,7 @@ namespace TemperateMod
             {
                 if (Main.rand.NextBool(7))
                     player.QuickSpawnItem(ItemType<Items.Accessories.LaserSight>());
+               
             }
         }
 
