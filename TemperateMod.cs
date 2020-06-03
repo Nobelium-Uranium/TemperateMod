@@ -1,6 +1,6 @@
 using Terraria.ModLoader;
 
-namespace TemperateModd
+namespace TemperateMod
 {
 	public class TemperateMod : Mod
 	{
