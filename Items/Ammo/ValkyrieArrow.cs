@@ -5,7 +5,7 @@ using Terraria.ID;
 
 namespace TemperateMod.Items.Ammo
 {
-    public class ValkyrieBullet : ModItem
+    public class ValkyrieArrow : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -22,9 +22,9 @@ namespace TemperateMod.Items.Ammo
             item.knockBack = 1.5f;
             item.value = Item.sellPrice(copper: 2);
             item.rare = ItemRarityID.Orange;
-            item.shoot = ProjectileType<Projectiles.ValkyrieBullet>();
-            item.shootSpeed = 16f;
-            item.ammo = AmmoID.Bullet;
+            item.shoot = ProjectileType<Projectiles.ValkyrieArrow>();
+            item.shootSpeed = 10f;
+            item.ammo = AmmoID.Arrow;
         }
     }
 }
