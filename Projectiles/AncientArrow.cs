@@ -37,8 +37,27 @@ namespace TemperateMod.Projectiles
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (target.type == NPCID.MoonLordCore || target.type == NPCID.MoonLordHand || target.type == NPCID.MoonLordHead || target.type == NPCID.MoonLordFreeEye || target.type == NPCID.LunarTowerNebula || target.type == NPCID.LunarTowerSolar || target.type == NPCID.LunarTowerStardust || target.type == NPCID.LunarTowerVortex)
+                damage *= 2;
+            else if (target.boss)
+                damage = (int)(damage * 1.5f);
+            else if (target.lifeMax < 5000 && !target.boss && target.type != NPCID.TargetDummy && target.type != NPCID.EaterofWorldsHead && target.type != NPCID.EaterofWorldsBody && target.type != NPCID.EaterofWorldsTail && target.type != NPCID.TheDestroyer && target.type != NPCID.TheDestroyerBody && target.type != NPCID.TheDestroyerTail && target.type != NPCID.PrimeCannon && target.type != NPCID.PrimeLaser && target.type != NPCID.PrimeSaw && target.type != NPCID.PrimeVice && target.type != NPCID.GolemFistLeft && target.type != NPCID.GolemFistRight && target.type != NPCID.GolemHead && target.type != NPCID.GolemHeadFree && target.type != NPCID.MartianSaucerCannon && target.type != NPCID.MartianSaucerTurret)
+            {
+                CombatText.NewText(target.getRect(), Color.Cyan, "Obliterated!", dot: true);
+                target.GetGlobalNPC<TemperateNPC>().Obliterated = true;
+                target.defense = 0;
+                if (damage < target.life)
+                    damage += target.life - damage;
+            }
+            if (projectile.timeLeft > 3)
+                projectile.timeLeft = 3;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
             if (!Explode)
             {
+                projectile.damage /= 2;
                 projectile.alpha = 255;
                 projectile.hide = true;
                 projectile.aiStyle = 0;
@@ -59,20 +78,6 @@ namespace TemperateMod.Projectiles
                 }
                 Explode = true;
             }
-            if (target.type == NPCID.MoonLordCore || target.type == NPCID.MoonLordHand || target.type == NPCID.MoonLordHead || target.type == NPCID.MoonLordFreeEye || target.type == NPCID.LunarTowerNebula || target.type == NPCID.LunarTowerSolar || target.type == NPCID.LunarTowerStardust || target.type == NPCID.LunarTowerVortex)
-                damage *= 2;
-            else if (target.boss)
-                damage = (int)(damage * 1.5f);
-            else if (target.lifeMax < 5000 && !target.boss && target.type != NPCID.TargetDummy && target.type != NPCID.EaterofWorldsHead && target.type != NPCID.EaterofWorldsBody && target.type != NPCID.EaterofWorldsTail && target.type != NPCID.TheDestroyer && target.type != NPCID.TheDestroyerBody && target.type != NPCID.TheDestroyerTail && target.type != NPCID.PrimeCannon && target.type != NPCID.PrimeLaser && target.type != NPCID.PrimeSaw && target.type != NPCID.PrimeVice && target.type != NPCID.GolemFistLeft && target.type != NPCID.GolemFistRight && target.type != NPCID.GolemHead && target.type != NPCID.GolemHeadFree && target.type != NPCID.MartianSaucerCannon && target.type != NPCID.MartianSaucerTurret)
-            {
-                CombatText.NewText(target.getRect(), Color.Cyan, "Obliterated!", dot: true);
-                target.GetGlobalNPC<TemperateNPC>().Obliterated = true;
-                target.defense = 0;
-                if (damage < target.life)
-                    damage += target.life - damage;
-            }
-            if (projectile.timeLeft > 3)
-                projectile.timeLeft = 3;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
