@@ -26,7 +26,7 @@ namespace TemperateMod.Projectiles
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (crit && Main.rand.NextBool(3))
+            if (crit && Main.rand.NextBool())
                 crit = false;
             if (crit)
                 damage = (int)(damage * 1.5f);
