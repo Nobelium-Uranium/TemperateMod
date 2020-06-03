@@ -57,7 +57,7 @@ namespace TemperateMod.Projectiles
         {
             if (!Explode)
             {
-                projectile.damage /= 2;
+                projectile.damage = (int)(projectile.damage * 0.75f);
                 projectile.alpha = 255;
                 projectile.hide = true;
                 projectile.aiStyle = 0;
