@@ -23,7 +23,7 @@ namespace TemperateMod.Items.Ammo
             item.value = Item.sellPrice(copper: 2);
             item.rare = ItemRarityID.Orange;
             item.shoot = ProjectileType<Projectiles.ValkyrieBullet>();
-            item.shootSpeed = 16f;
+            item.shootSpeed = 10f;
             item.ammo = AmmoID.Bullet;
         }
     }

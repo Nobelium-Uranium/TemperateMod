@@ -17,7 +17,6 @@ namespace TemperateMod.Projectiles
             projectile.width = projectile.height = 10;
             projectile.friendly = true;
             projectile.penetrate = 3;
-            projectile.extraUpdates = 1;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
