@@ -16,6 +16,7 @@ namespace TemperateMod.Projectiles
             projectile.width = projectile.height = 4;
             projectile.friendly = true;
             projectile.penetrate = 3;
+            projectile.extraUpdates = 1;
         }
 
         public override void AI()
