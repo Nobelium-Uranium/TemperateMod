@@ -140,7 +140,10 @@ namespace TemperateMod.Items.Weapons.Chem
         public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ItemType<RelicBow>());
+            r.AddIngredient(ItemID.Tsunami);
             r.AddIngredient(ItemID.PulseBow);
+            r.AddIngredient(ItemID.DD2BetsyBow);
             r.AddIngredient(ItemID.Phantasm);
             r.AddIngredient(ItemID.LunarBar, 100);
             r.AddTile(TileID.LunarCraftingStation);
