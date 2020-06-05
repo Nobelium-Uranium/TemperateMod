@@ -9,6 +9,18 @@ namespace TemperateMod
     {
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
+            #region Dev Sets
+            // Self reminder to do a switch when a second developer set is added
+            if (Main.hardMode && context == "bossBag" && Main.rand.NextBool(20))
+            {
+                player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliHelmet>());
+                player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliShirt>());
+                player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliPants>());
+                player.QuickSpawnItem(ItemType<Items.Accessories.Wings.AvaliGlider>());
+                player.QuickSpawnItem(ItemType<Items.Weapons.Chem.RelicBow>());
+            }
+            #endregion
+
             if (context == "bossBag" && arg == ItemID.TwinsBossBag)
             {
                 if (Main.rand.NextBool(7))
@@ -27,6 +39,20 @@ namespace TemperateMod
             r.AddIngredient(ItemID.SoulofFlight, 2);
             r.AddTile(TileID.Bottles);
             r.SetResult(ItemID.TruffleWorm);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.StoneBlock, 50);
+            r.AddIngredient(ItemID.LifeCrystal, 3);
+            r.AddTile(TileID.HeavyWorkBench);
+            r.SetResult(ItemID.HeartStatue);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.StoneBlock, 50);
+            r.AddIngredient(ItemID.ManaCrystal, 3);
+            r.AddTile(TileID.HeavyWorkBench);
+            r.SetResult(ItemID.StarStatue);
             r.AddRecipe();
         }
     }
