@@ -110,10 +110,5 @@ namespace TemperateMod.Projectiles
                 projectile.timeLeft = 3;
             return false;
         }
-
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return Color.White * (1f - projectile.alpha / 255f);
-        }
     }
 }
