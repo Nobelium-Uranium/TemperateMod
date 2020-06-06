@@ -84,14 +84,19 @@ namespace TemperateMod
 
         public override void PreUpdateBuffs()
         {
-            if (ZoneGlacier && player.wet && !player.lavaWet && !player.honeyWet)
+            if (ZoneGlacier)
             {
-                player.ClearBuff(BuffID.Chilled);
-                player.ClearBuff(BuffID.Frozen);
-                player.buffImmune[BuffID.Chilled] = true;
-                player.buffImmune[BuffID.Frozen] = true;
-                player.AddBuff(BuffID.Warmth, 2);
-                player.AddBuff(BuffID.Regeneration, 2);
+                if (player.wet && !player.lavaWet && !player.honeyWet)
+                {
+                    player.ClearBuff(BuffID.Chilled);
+                    player.ClearBuff(BuffID.Frozen);
+                    player.buffImmune[BuffID.Chilled] = true;
+                    player.buffImmune[BuffID.Frozen] = true;
+                    player.AddBuff(BuffID.Warmth, 2);
+                    player.AddBuff(BuffID.Regeneration, 2);
+                }
+                else
+                    player.AddBuff(BuffID.Chilled, 2);
             }
         }
 
