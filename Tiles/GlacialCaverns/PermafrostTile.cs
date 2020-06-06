@@ -24,5 +24,10 @@ namespace TemperateMod.Tiles.GlacialCaverns
             Main.PlaySound(SoundID.Item50, i * 16, j * 16);
             return false;
         }
+
+        public override bool CanExplode(int i, int j)
+        {
+            return Main.hardMode;
+        }
     }
 }
