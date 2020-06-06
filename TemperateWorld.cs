@@ -13,30 +13,53 @@ namespace TemperateMod
         public static int GlacierTiles;
 
         // This code doesn't work properly right now
-        /*public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int PostSnow = tasks.FindIndex(genpass => genpass.Name.Equals("Slush Check"));
-            if (PostSnow != -1)
-            {
-                tasks.Insert(PostSnow + 1, new PassLegacy("Glacial Caverns", TemperateGlacialCaverns));
-            }
+            tasks.Insert(PostSnow + 1, new PassLegacy("Glacial Caverns", TemperateGlacialCaverns));
         }
 
         private void TemperateGlacialCaverns(GenerationProgress progress)
         {
-            progress.Message = "Flash Freezing Deep Ice Caverns";
+            progress.Message = "Creating Glacial Caverns";
+
+            for (int i = 0; i < Main.maxTilesX; i++)
+            {
+                for (int j = 0; j < Main.maxTilesY; j++)
+                {
+                    Tile tile = Framing.GetTileSafely(i, j);
+                    if (tile.active() && tile.type == TileID.IceBlock && j == 150)
+                    {
+                        if (Main.rand.NextBool())
+                            Main.tile[i, j].type = (ushort)TileType<Tiles.GlacialCaverns.PermafrostTile>();
+                        if (Main.rand.NextBool(3))
+                            Main.tile[i, j - 1].type = (ushort)TileType<Tiles.GlacialCaverns.PermafrostTile>();
+                    }
+                }
+            }
+
             for (int k = 0; k < (int)(Main.maxTilesX * Main.maxTilesY * 6E-05); k++)
             {
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX);
-                int y = WorldGen.genRand.Next((int)WorldGen.rockLayer + 125, Main.maxTilesY - 200);
+                int y = WorldGen.genRand.Next((int)WorldGen.rockLayer + 150, Main.maxTilesY);
                 Tile tile = Framing.GetTileSafely(x, y);
-                if (tile.active() && (tile.type == TileID.IceBlock || tile.type == TileID.CorruptIce || tile.type == TileID.FleshIce))
+                if (tile.active() && tile.type == TileID.IceBlock)
+                    WorldGen.TileRunner(x, y, WorldGen.genRand.Next(6, 12), WorldGen.genRand.Next(12, 24), TileID.Cobalt); // Cobalt ore is placeholder
+            }
+
+            for (int i = 0; i < Main.maxTilesX; i++)
+            {
+                for (int j = 0; j < Main.maxTilesY; j++)
                 {
-                    WorldGen.TileRunner(x, y, 50, 2500, TileType<Tiles.GlacialCaverns.PermafrostTile>());
+                    Tile tile = Framing.GetTileSafely(i, j);
+                    if (tile.active() && tile.type == TileID.IceBlock && j >= (int)WorldGen.rockLayer + 151)
+                    {
+                        Main.tile[i, j].type = (ushort)TileType<Tiles.GlacialCaverns.PermafrostTile>();
+                    }
                 }
             }
-        }*/
-        
+        }
+
         public override void ResetNearbyTileEffects()
         {
             GlacierTiles = 0;
