@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.IO;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,6 +25,8 @@ namespace TemperateMod
         private int RelicLifeCounter;
         private int RelicManaCounter;
 
+        public bool ZoneGlacier;
+
         public override void ResetEffects()
         {
             VanityWings = false;
@@ -36,9 +40,59 @@ namespace TemperateMod
             #endregion
         }
 
+        public override void UpdateBiomes()
+        {
+            ZoneGlacier = TemperateWorld.GlacierTiles > 100 && player.ZoneSnow;
+        }
+
+        public override bool CustomBiomesMatch(Player other)
+        {
+            TemperatePlayer modOther = other.GetModPlayer<TemperatePlayer>();
+            return ZoneGlacier == modOther.ZoneGlacier;
+        }
+
+        public override void CopyCustomBiomesTo(Player other)
+        {
+            TemperatePlayer modOther = other.GetModPlayer<TemperatePlayer>();
+            modOther.ZoneGlacier = ZoneGlacier;
+        }
+
+        public override void SendCustomBiomes(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = ZoneGlacier;
+            writer.Write(flags);
+        }
+
+        public override void ReceiveCustomBiomes(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            ZoneGlacier = flags[0];
+        }
+
+        public override Texture2D GetMapBackgroundImage()
+        {
+            if (ZoneGlacier)
+                return mod.GetTexture("GlacialCavernsMapBG");
+            return null;
+        }
+
         public override void PreUpdate()
         {
             OldLife = player.statLife;
+        }
+
+        public override void PreUpdateBuffs()
+        {
+            if (ZoneGlacier && player.wet && !player.lavaWet && !player.honeyWet)
+            {
+                player.ClearBuff(BuffID.Chilled);
+                player.ClearBuff(BuffID.Frozen);
+                player.buffImmune[BuffID.Chilled] = true;
+                player.buffImmune[BuffID.Frozen] = true;
+                player.AddBuff(BuffID.Warmth, 2);
+                player.AddBuff(BuffID.Regeneration, 2);
+            }
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
