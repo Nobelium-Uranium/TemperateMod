@@ -46,6 +46,18 @@ namespace TemperateMod
             RelicLifeCounter = 0;
         }
 
+        public override void NaturalLifeRegen(ref float regen)
+        {
+            if (RestorationRelic && RelicLifeCounter == 600)
+                regen *= 50;
+        }
+
+        public override void UpdateBadLifeRegen()
+        {
+            if (player.lifeRegen <= 0)
+                RelicLifeCounter = 0;
+        }
+
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
             if (VanityWings)
@@ -76,8 +88,6 @@ namespace TemperateMod
                 }
                 else
                     RelicLifeCounter = 0;
-                if (RelicLifeCounter == 600)
-                    player.statLife += 1;
                 if (RelicManaCounter == 2)
                 {
                     player.statMana += 1;
