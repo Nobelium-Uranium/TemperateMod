@@ -15,7 +15,7 @@ namespace TemperateMod.Tiles.GlacialCaverns
             dustType = DustID.Ice;
             drop = ItemType<Items.Placeable.GlacialCaverns.PermafrostBlock>();
             AddMapEntry(new Color(99, 152, 192));
-            mineResist = 3f;
+            mineResist = 2.5f;
             minPick = 110;
         }
 
