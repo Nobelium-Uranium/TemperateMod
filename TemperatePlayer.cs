@@ -86,6 +86,7 @@ namespace TemperateMod
         {
             if (ZoneGlacier)
             {
+                player.gills = true;
                 if (player.wet && !player.lavaWet && !player.honeyWet)
                 {
                     player.ClearBuff(BuffID.Chilled);
