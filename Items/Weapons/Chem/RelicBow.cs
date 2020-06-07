@@ -23,7 +23,7 @@ namespace TemperateMod.Items.Weapons.Chem
             item.noMelee = true;
             item.width = 20;
             item.height = 30;
-            item.damage = 250;
+            item.damage = 300;
             item.knockBack = 4f;
             item.useTime = 35;
             item.useAnimation = 35;

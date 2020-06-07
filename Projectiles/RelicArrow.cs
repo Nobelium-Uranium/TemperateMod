@@ -42,7 +42,7 @@ namespace TemperateMod.Projectiles
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (target.lifeMax < 500 && !target.boss && target.type != NPCID.TargetDummy && target.type != NPCID.EaterofWorldsHead && target.type != NPCID.EaterofWorldsBody && target.type != NPCID.EaterofWorldsTail)
+            if (target.lifeMax < 300 && !target.boss && target.type != NPCID.TargetDummy && target.type != NPCID.EaterofWorldsHead && target.type != NPCID.EaterofWorldsBody && target.type != NPCID.EaterofWorldsTail)
             {
                 CombatText.NewText(target.getRect(), Color.Cyan, "Obliterated!", dot: true);
                 target.GetGlobalNPC<TemperateNPC>().Obliterated = true;
