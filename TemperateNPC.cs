@@ -27,6 +27,11 @@ namespace TemperateMod
                     if (Main.rand.NextBool(10))
                         Item.NewItem(npc.getRect(), ItemType<Items.Accessories.LaserSight>());
                 }
+                if (npc.type == NPCID.Plantera)
+                {
+                    if (Main.rand.NextBool(50))
+                        Item.NewItem(npc.getRect(), ItemType<Items.Accessories.Wings.BloomWings>());
+                }
             }
         }
     }

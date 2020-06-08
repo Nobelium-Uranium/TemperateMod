@@ -11,6 +11,7 @@ namespace TemperateMod
     class TemperatePlayer : ModPlayer
     {
         public bool VanityWings;
+        public bool BloomWings;
 
         public bool LaserSight;
         public bool LaserScope;
@@ -30,6 +31,7 @@ namespace TemperateMod
         public override void ResetEffects()
         {
             VanityWings = false;
+            BloomWings = false;
             #region Accessories
             LaserSight = false;
             LaserScope = false;
@@ -103,6 +105,8 @@ namespace TemperateMod
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
+            if (BloomWings)
+                player.wingTime = 0;
             RelicLifeCounter = 0;
         }
 

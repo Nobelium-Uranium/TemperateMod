@@ -16,16 +16,26 @@ namespace TemperateMod
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliHelmet>());
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliShirt>());
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliPants>());
-                player.QuickSpawnItem(ItemType<Items.Accessories.Wings.AvaliGlider>());
                 player.QuickSpawnItem(ItemType<Items.Weapons.Chem.RelicBow>());
+                if (arg == ItemID.PlanteraBossBag && Main.rand.NextBool(100))
+                    player.QuickSpawnItem(ItemType<Items.Accessories.Wings.BlossomWings>());
+                else
+                    player.QuickSpawnItem(ItemType<Items.Accessories.Wings.AvaliGlider>());
             }
             #endregion
 
-            if (context == "bossBag" && arg == ItemID.TwinsBossBag)
+            if (context == "bossBag")
             {
-                if (Main.rand.NextBool(7))
-                    player.QuickSpawnItem(ItemType<Items.Accessories.LaserSight>());
-               
+                if (arg == ItemID.TwinsBossBag)
+                {
+                    if (Main.rand.NextBool(7))
+                        player.QuickSpawnItem(ItemType<Items.Accessories.LaserSight>());
+                }
+                if (arg == ItemID.PlanteraBossBag)
+                {
+                    if (Main.rand.NextBool(45))
+                        player.QuickSpawnItem(ItemType<Items.Accessories.Wings.BloomWings>());
+                }
             }
         }
 
