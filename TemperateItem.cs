@@ -17,7 +17,7 @@ namespace TemperateMod
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliShirt>());
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliPants>());
                 player.QuickSpawnItem(ItemType<Items.Weapons.Chem.RelicBow>());
-                if (arg == ItemID.PlanteraBossBag && Main.rand.NextBool(100))
+                if (arg == ItemID.PlanteraBossBag && Main.rand.NextBool(10))
                     player.QuickSpawnItem(ItemType<Items.Accessories.Wings.BlossomWings>());
                 else
                     player.QuickSpawnItem(ItemType<Items.Accessories.Wings.AvaliGlider>());
