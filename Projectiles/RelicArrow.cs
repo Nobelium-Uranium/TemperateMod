@@ -69,7 +69,7 @@ namespace TemperateMod.Projectiles
                 projectile.width = projectile.height = 75;
                 projectile.Center = projectile.position;
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/AncientLongbow/RelicArrowSpecial"), projectile.position);
-                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/AncientLongbow/RelicArrowExplosion"), projectile.position);
+                Main.PlaySound(SoundID.Item94, projectile.position);
                 for (int i = 0; i < 10; i++)
                 {
                     int Explosion = Dust.NewDust(projectile.Center, 0, 0, DustID.AncientLight, newColor: Color.Cyan, Scale: 2f);
@@ -93,7 +93,7 @@ namespace TemperateMod.Projectiles
             projectile.velocity = Vector2.Zero;
             projectile.width = projectile.height = 75;
             projectile.Center = projectile.position;
-            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/AncientLongbow/RelicArrowExplosion"), projectile.position);
+            Main.PlaySound(SoundID.Item94, projectile.position);
             for (int i = 0; i < 10; i++)
             {
                 int Explosion = Dust.NewDust(projectile.Center, 0, 0, DustID.AncientLight, newColor: Color.Cyan, Scale: 2f);
