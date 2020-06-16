@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 namespace TemperateMod.Items.Consumables.Special
 {
     class ArcaneCrystal : ModItem
-    {
+    { // TODO: Credit Stevie
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Permanently increases maximum mana by 10");
