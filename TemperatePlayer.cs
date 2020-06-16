@@ -4,12 +4,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using static Terraria.ModLoader.ModContent;
 
 namespace TemperateMod
 {
     class TemperatePlayer : ModPlayer
     {
+        public int ArcaneCrystals;
+
         public bool VanityWings;
         public bool BloomWings;
 
@@ -30,6 +33,7 @@ namespace TemperateMod
 
         public override void ResetEffects()
         {
+            player.statManaMax2 += ArcaneCrystals * 10;
             VanityWings = false;
             BloomWings = false;
             #region Accessories
@@ -40,6 +44,26 @@ namespace TemperateMod
             #region Buffs
             PrinceBlizzard = false;
             #endregion
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            ModPacket packet = mod.GetPacket();
+            packet.Write(ArcaneCrystals);
+            packet.Send(toWho, fromWho);
+        }
+
+        public override TagCompound Save()
+        {
+            return new TagCompound
+            {
+                { "ArcaneCrystals", ArcaneCrystals },
+            };
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            ArcaneCrystals = tag.GetInt("ArcaneCrystals");
         }
 
         public override void UpdateBiomes()
