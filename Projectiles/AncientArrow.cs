@@ -59,6 +59,7 @@ namespace TemperateMod.Projectiles
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            Player owner = Main.player[projectile.owner];
             if (!Explode)
             {
                 projectile.damage = (int)(projectile.damage * 0.75f);
@@ -69,7 +70,7 @@ namespace TemperateMod.Projectiles
                 projectile.velocity = Vector2.Zero;
                 projectile.width = projectile.height = 200;
                 projectile.Center = projectile.position;
-                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/AncientLongbow/AncientArrowSpecial"), projectile.position);
+                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/AncientLongbow/AncientArrowSpecial"), owner.position);
                 Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/AncientLongbow/AncientArrowExplosion"), projectile.position);
                 for (int i = 0; i < 40; i++)
                 {
