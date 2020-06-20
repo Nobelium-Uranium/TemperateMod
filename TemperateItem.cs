@@ -11,16 +11,20 @@ namespace TemperateMod
         {
             #region Dev Sets
             // Self reminder to do a switch when a second developer set is added
-            if (Main.hardMode && context == "bossBag" && Main.rand.NextBool(20))
+            if (context == "bossBag" && Main.rand.NextBool(20))
             {
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliHelmet>());
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliShirt>());
                 player.QuickSpawnItem(ItemType<Items.Vanity.Chem.AvaliPants>());
-                player.QuickSpawnItem(ItemType<Items.Weapons.Chem.RelicBow>());
-                if (arg == ItemID.PlanteraBossBag && Main.rand.NextBool(10))
-                    player.QuickSpawnItem(ItemType<Items.Accessories.Wings.BlossomWings>());
-                else
-                    player.QuickSpawnItem(ItemType<Items.Accessories.Wings.AvaliGlider>());
+                if (Main.hardMode)
+                {
+                    player.QuickSpawnItem(ItemType<Items.Weapons.Chem.RelicBow>());
+                    if (arg == ItemID.PlanteraBossBag && Main.rand.NextBool(10))
+                        player.QuickSpawnItem(ItemType<Items.Accessories.Wings.BlossomWings>());
+                    else
+                        player.QuickSpawnItem(ItemType<Items.Accessories.Wings.AvaliGlider>());
+                }
+                player.QuickSpawnItem(ItemType<Items.Tools.Chem.AvaliManipulator>());
             }
             #endregion
 

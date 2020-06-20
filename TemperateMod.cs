@@ -5,9 +5,9 @@ using Terraria;
 using ReLogic.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Runtime.CompilerServices;
 using System.IO;
-using TemperateMod.Items.Consumables.Special;
+using System.Collections.Generic;
+using Terraria.UI;
 
 namespace TemperateMod
 {
@@ -38,6 +38,35 @@ namespace TemperateMod
                 priority = MusicPriority.BiomeHigh;
             }
         }
+
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+            int index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Ruler"));
+
+            layers.Insert(index, new LegacyGameInterfaceLayer("TemperateMod: Avali Manipulator", delegate
+            {
+                Player player = Main.LocalPlayer;
+
+                if (player.HeldItem.type == ModContent.ItemType<Items.Tools.Chem.AvaliManipulator>())
+                    DrawAvaliManipulator(player);
+
+                return true;
+            }, InterfaceScaleType.Game));
+        }
+
+        public void DrawAvaliManipulator(Player player)
+        {
+            float distance = Vector2.Distance(player.Center, Main.MouseWorld);
+
+            if (distance < 320 && player.active && !player.dead)
+            {
+                Texture2D texture = GetTexture("UI/MatterManipulator");
+                Point uiPositionPoint = Main.MouseWorld.ToTileCoordinates();
+                Vector2 uiPosition = uiPositionPoint.ToVector2();
+                Main.spriteBatch.Draw(texture, uiPosition.ToWorldCoordinates() - Main.screenPosition, null, Color.White * 0.5f, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0f);
+            }
+        }
+
 
         private void NewDrawMana(On.Terraria.Main.orig_DrawInterface_Resources_Mana orig)
         {
