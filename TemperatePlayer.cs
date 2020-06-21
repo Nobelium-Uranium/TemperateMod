@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -28,6 +29,7 @@ namespace TemperateMod
         private int OldLife;
         private int RelicLifeCounter;
         private int RelicManaCounter;
+        private int RelicManaCounterMax;
 
         public bool ZoneGlacier;
 
@@ -148,6 +150,9 @@ namespace TemperateMod
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
+            RelicManaCounterMax = (int)Math.Ceiling((double)player.statManaMax2 / 20);
+            if (RelicManaCounterMax < 1)
+                RelicManaCounterMax = 1;
             if (VanityWings)
                 player.wingsLogic = 0;
             if (LaserSight && (player.HeldItem.useAmmo == AmmoID.Bullet || player.HeldItem.type == ItemID.StakeLauncher))
@@ -176,9 +181,10 @@ namespace TemperateMod
                 }
                 else
                     RelicLifeCounter = 0;
-                if (RelicManaCounter == 2)
-                {
-                    player.statMana += 1;
+                if (RelicManaCounter >= RelicManaCounterMax)
+                { // I feel like this can be done better, it's kind of a shot in the dark
+                    if (player.statMana < player.statManaMax2)
+                        player.statMana += RelicManaCounterMax / 2;
                     RelicManaCounter = 0;
                 }
                 RelicManaCounter += 1;
@@ -188,7 +194,7 @@ namespace TemperateMod
                 RelicLifeCounter = 0;
                 RelicManaCounter = 0;
             }
-            //god just use a switch AAAAAAAAAAAAAAAAA
+            // A switch is illogical here, what if the player is using multiple unique accessories?
         }
     }
 }
